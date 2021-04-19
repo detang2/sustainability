@@ -1,0 +1,585 @@
+<!-- local host setup: 
+  in terminal, type "python -m SimpleHTTPServer" 
+  access in browser by typing "localhost:8000" -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XR for Sustainability</title>
+
+<!-- load aframe -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<!-- aframe environment -->
+  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+<!-- allow for features like mouseup mousedown -->
+  <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+<!-- allow micro interations (animation) -->
+  <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="welcome" src="assets/a_welcome.png">
+      <!-- scene 1 -->
+      <img id="plastic" src="assets/chara/a_plastic.png">
+      <img id="paper" src="assets/chara/a_paper.png">
+      <img id="compost" src="assets/chara/a_compost.png">
+      <img id="metal" src="assets/chara/a_metal.png">
+      <img id="glass" src="assets/chara/a_glass.png">
+      <!-- scene 2 -->
+      <img id="wall" src="assets/wall2.jpeg">
+      <img id="goddess" src="assets/goddess.png">
+      <img id="sayletsgo" src="assets/a_sayletsgo.png">
+      <img id="john" src="assets/a_john_flipped.png">
+      <img id="door1" src="assets/doors/a_door1.png">
+      <img id="door2" src="assets/doors/a_door2.png">
+      <img id="door3" src="assets/doors/a_door3.png">
+      <img id="door4" src="assets/doors/a_door4.png">
+      <img id="door5" src="assets/doors/a_door5.png">
+      <img id="door6" src="assets/doors/a_door6.png">
+      <img id="door7" src="assets/doors/a_door7.png">
+
+    </a-assets>
+    <a-entity environment="preset: forest; dressingAmount: 250"></a-entity>
+
+    <!-- welcome scene -->
+    <a-plane id="welcome_div"
+      position="0 1.7 -1"
+      width="2"
+      height="1"
+      opacity="0"
+      event-set__welcome="_event: click; visible: false"
+      onclick="control_intructions()">
+      <a-image id="welcome_image"
+        position="0 0 0"
+        src="#welcome"
+        width="2"
+        height="1"
+        opacity="0"
+        animation="property: opacity; dir: normal; dur: 1000;
+        easing: easeOutQuad; loop: false; from:0; to: 1; delay: 1000;">
+      </a-image>
+    </a-plane>
+
+    <!-- first scene -->
+    <a-entity id="scene1"
+      visible="false">
+      <!-- character selection -->
+      <a-text
+        position="0 2.7 -3"
+        value="Let's choose a character first"
+        color="#000000"
+        align="center">
+      </a-text>
+      <a-text 
+        position="0 2.5 -3"
+        value="Hover over the boxes for more details"
+        color="#000000"
+        align="center"
+        scale="0.5 0.5 0.5">
+      </a-text>
+      <a-box src="#plastic" 
+        position="0 1.5 -3"
+        event-set__hover="_event: mouseenter; _target: #selectplastic; color: #4cbb6d"
+        event-set__leave="_event: mouseleave; _target: #selectplastic; color: grey"
+        event-set__hover2="_event: mouseenter; _target: #plasticText; visible: true"
+        event-set__leave2="_event: mouseleave; _target: #plasticText; visible: false"
+        >
+        <a-box id="selectplastic"
+          scale="1.1 0.2 1.1"
+          color="grey"
+          position="0 -0.35 0"
+          onclick="callconfirm()">
+          <a-text
+            value="Select" 
+            align="center" 
+            color="#FFF" 
+            scale="0.46 2.5 0"
+            position="0 0 0.51">
+          </a-text>
+        </a-box>
+        <a-text id="plasticText" 
+          value="Name: John\nType: Plastic bottle #1\nTraits: Persistent, 300 years old\nand have been through a lot" 
+          align="center" 
+          color="#FFF" 
+          visible="false" 
+          scale="0.5 0.5 0.5"
+          position="0 0.8 0.4"
+          geometry="primitive: plane; width: 3.5; height: 1.5" 
+          material="color: #111111">
+        </a-text>
+        <a-box id="confirmbox"
+          scale="0.5 0.2 0.2"
+          color="#4cbb6d"
+          visible="false"
+          position="0 0.35 0.8"
+          onclick="toScene2()">
+          <a-text
+            value="Confirm" 
+            align="center" 
+            color="#FFF" 
+            scale="1 2.5 0"
+            position="0 0 0.51">
+          </a-text>
+        </a-box>
+      </a-box>
+
+      <a-box src="#paper" 
+        position="1.5 1.5 -3"
+        event-set__hover="_event: mouseenter; _target: #selectpaper; color: #a3a3a3"
+        event-set__leave="_event: mouseleave; _target: #selectpaper; color: grey"
+        event-set__hover2="_event: mouseenter; _target: #paperText; visible: true"
+        event-set__leave2="_event: mouseleave; _target: #paperText; visible: false"
+        >
+        <a-box id="selectpaper"
+          scale="1.1 0.2 1.1"
+          color="grey"
+          position="0 -0.35 0">
+          <a-text
+            value="Not Available Yet" 
+            align="center" 
+            color="#FFF" 
+            scale="0.46 2.5 0"
+            position="0 0 0.51">
+          </a-text>
+        </a-box>
+        <a-text id="paperText" 
+          value="Name: Aspen\nType: Cardboard box\nTraits: Supportive, likes to tell\nstories of their adventures" 
+          align="center" 
+          color="#FFF" 
+          visible="false" 
+          scale="0.5 0.5 0.5"
+          position="0 0.8 0.4"
+          geometry="primitive: plane; width: 3.6; height: 1.5" 
+          material="color: #111111">
+        </a-text>
+      </a-box>
+
+      <a-box src="#compost" 
+        position="-1.5 1.5 -3"
+        event-set__hover="_event: mouseenter; _target: #selectcompost; color: #a3a3a3"
+        event-set__leave="_event: mouseleave; _target: #selectcompost; color: grey"
+        event-set__hover2="_event: mouseenter; _target: #compostText; visible: true"
+        event-set__leave2="_event: mouseleave; _target: #compostText; visible: false"
+        >
+        <a-box id="selectcompost"
+          scale="1.1 0.2 1.1"
+          color="grey"
+          position="0 -0.35 0">
+          <a-text
+            value="Not Available Yet" 
+            align="center" 
+            color="#FFF" 
+            scale="0.46 2.5 0"
+            position="0 0 0.51">
+          </a-text>
+        </a-box>
+        <a-text id="compostText" 
+          value="Name: Cypress\nType: Compost\nTraits: Encouraging, will\nmake you a good cup of tea" 
+          align="center" 
+          color="#FFF" 
+          visible="false" 
+          scale="0.5 0.5 0.5"
+          position="0 0.8 0.4"
+          geometry="primitive: plane; width: 3.6; height: 1.5" 
+          material="color: #111111">
+        </a-text>
+      </a-box>
+
+      <a-box src="#metal" 
+        position="3 1.5 -3"
+        event-set__hover="_event: mouseenter; _target: #selectmetal; color: #a3a3a3"
+        event-set__leave="_event: mouseleave; _target: #selectmetal; color: grey"
+        event-set__hover2="_event: mouseenter; _target: #metalText; visible: true"
+        event-set__leave2="_event: mouseleave; _target: #metalText; visible: false"
+        >
+        <a-box id="selectmetal"
+          scale="1.1 0.2 1.1"
+          color="grey"
+          position="0 -0.35 0">
+          <a-text
+            value="Not Available Yet" 
+            align="center" 
+            color="#FFF" 
+            scale="0.46 2.5 0"
+            position="0 0 0.51">
+          </a-text>
+        </a-box>
+        <a-text id="metalText" 
+          value="Name: Aurelia\nType: Metal can\nTraits: Stable, your secret\nis safe with them"
+          align="center" 
+          color="#FFF" 
+          visible="false" 
+          scale="0.5 0.5 0.5"
+          position="0 0.8 0.4"
+          geometry="primitive: plane; width: 3.6; height: 1.5" 
+          material="color: #111111">
+        </a-text>
+      </a-box>
+
+      <a-box src="#glass" 
+        position="-3 1.5 -3"
+        event-set__hover="_event: mouseenter; _target: #selectglass; color: #a3a3a3"
+        event-set__leave="_event: mouseleave; _target: #selectglass; color: grey"
+        event-set__hover2="_event: mouseenter; _target: #glassText; visible: true"
+        event-set__leave2="_event: mouseleave; _target: #glassText; visible: false"
+        >
+        <a-box id="selectglass"
+          scale="1.1 0.2 1.1"
+          color="grey"
+          position="0 -0.35 0">
+          <a-text
+            value="Not Available Yet" 
+            align="center" 
+            color="#FFF" 
+            scale="0.46 2.5 0"
+            position="0 0 0.51">
+          </a-text>
+        </a-box>
+        <a-text id="glassText" 
+          value="Name: Prism\nType: Glass bottle\nTraits: Imaginative, sees the\nworld as what it could be"
+          align="center" 
+          color="#FFF" 
+          visible="false" 
+          scale="0.5 0.5 0.5"
+          position="0 0.8 0.4"
+          geometry="primitive: plane; width: 3.6; height: 1.5" 
+          material="color: #111111">
+        </a-text>
+      </a-box>
+    </a-entity>
+    
+    <!-- second scene -->
+    <!-- environment setup -->
+    <a-entity id="scene2" visible="false">
+      <a-box id="scene2front"
+        src="#wall"
+        position="0 0 -5"
+        scale="25 15 0.2"
+        material="side: double;">
+      </a-box>
+      <a-box id="scene2back"
+        src="#wall"
+        position="0 0 5"
+        scale="25 15 0.2"
+        material="side: double;">
+      </a-box>
+      <a-box id="scene2roof"
+        src="#wall"
+        position="0 7 0"
+        scale="35 0.2 20"
+        material="side: double;">
+      </a-box>
+    
+      <!-- scene 2 welcome -->
+      <a-entity id=goddess_welcome
+        visible="true">
+        <a-image id="goddess"
+          position="0 1.8 -4.3"
+          src="#goddess"
+          width="2"
+          height="4.24">
+        </a-image>
+        <a-text
+          position="0 2.2 -4"
+          scale="1.7 1.7 1.7"
+          value="Welcome to the recycling facility!\nLet's get you cleaned up for your new life"
+          color="#ffffff"
+          align="center">
+        </a-text>
+        <a-plane id="johnresponse"
+          event-set__click="_event: click; _target: #johnresponse_image; src: #letsgo"
+          rotation="-10 0 0"
+          position="0 0.7 -3"
+          width="2.18"
+          height="1"
+          onclick="resetScene2()">
+          <a-image id="johnresponse_image"
+            visible="true"
+            position="0 0 0"
+            src="#sayletsgo"
+            width="2.18"
+            height="1">
+          </a-image>
+        </a-plane>
+      </a-entity>
+
+      <!-- doors -->
+      <a-entity id="wallofdoors"
+        visible="false">
+        <a-text
+          position="0 4.2 -3.7"
+          value="Click to enter the door with John's corresponding recycle type"
+          color="#FFFFFF"
+          align="center">
+        </a-text>
+        <a-text 
+          position="0 3.8 -3.7"
+          value="John's profile is on the wall behind you"
+          color="#FFFFFF"
+          align="center"
+          scale="0.5 0.5 0.5">
+        </a-text>
+        <a-image id="john_image"
+          position="0 1.5 4"
+          src="#john"
+          scale="2 2 2">
+        </a-image>
+
+        <a-image id="thisdoor"
+          event-set__down="_event: mousedown; position: -7.5 2 -3.8"
+          event-set__up="_event: mouseup; position: -7.5 1.8 -3.8"
+          event-set__leave="_event: mouseleave; position: -7.5 1.8 -3.8"
+          event-set__down2="_event: mousedown; _target: #door1text; visible: true"
+          event-set__up2="_event: mouseup; _target: #door1text; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #door1text; visible: false"
+          position="-7.5 1.8 -3.8"
+          src="#door1"
+          width="2"
+          height="3.42"
+          onclick="callconfirmbox2()">
+          <a-text id="door1text" 
+            value="Correct!" 
+            align="center" 
+            color="#FFF" 
+            visible="false" 
+            scale="0.6 0.6 0.6"
+            position="0 0.8 0.1"
+            geometry="primitive: plane; width: 3.5; height: 1.5" 
+            material="color: #111111">
+          </a-text>
+        </a-image>
+        <a-box id="confirmbox2"
+          scale="1 0.4 0.1"
+          color="#4cbb6d"
+          visible="false"
+          position="-7.5 0.4 -3.4"
+          onclick="toScene3()">
+          <a-text
+            value="Confirm" 
+            align="center" 
+            color="#FFF" 
+            scale="1 2.5 0"
+            position="0 0 0.51">
+          </a-text>
+        </a-box>
+
+        <a-image
+          event-set__down="_event: mousedown; position: -5 2 -3.8"
+          event-set__up="_event: mouseup; position: -5 1.8 -3.8"
+          event-set__leave="_event: mouseleave; position: -5 1.8 -3.8"
+          event-set__down2="_event: mousedown; _target: #door2text; visible: true"
+          event-set__up2="_event: mouseup; _target: #door2text; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #door2text; visible: false"
+          position="-5 1.8 -3.8"
+          src="#door2"
+          width="2"
+          height="3.42">
+          <a-text id="door2text"
+            value="Oops! Incorrect, but some cities\ndo combine plastic #1 and #2"
+            align="center" 
+            color="#FFF" 
+            visible="false" 
+            scale="0.6 0.6 0.6"
+            position="0 0.8 0.1"
+            geometry="primitive: plane; width: 3.5; height: 1.5" 
+            material="color: #111111"></a-text>
+        </a-image>
+
+        <a-image
+          event-set__down="_event: mousedown; position: -2.5 2 -3.8"
+          event-set__up="_event: mouseup; position: -2.5 1.8 -3.8"
+          event-set__leave="_event: mouseleave; position: -2.5 1.8 -3.8"
+          event-set__down2="_event: mousedown; _target: #door3text; visible: true"
+          event-set__up2="_event: mouseup; _target: #door3text; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #door3text; visible: false"
+          position="-2.5 1.8 -3.8"
+          src="#door3"
+          width="2"
+          height="3.42">
+          <a-text id="door3text"
+            value="Oops! Try another door"
+            align="center" 
+            color="#FFF" 
+            visible="false" 
+            scale="0.6 0.6 0.6"
+            position="0 0.8 0.1"
+            geometry="primitive: plane; width: 3.5; height: 1.5" 
+            material="color: #111111"></a-text>
+        </a-image>
+
+        <a-image
+          event-set__down="_event: mousedown; position: 0 2 -3.8"
+          event-set__up="_event: mouseup; position: 0 1.8 -3.8"
+          event-set__leave="_event: mouseleave; position: 0 1.8 -3.8"
+          event-set__down2="_event: mousedown; _target: #door4text; visible: true"
+          event-set__up2="_event: mouseup; _target: #door4text; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #door4text; visible: false"
+          position="0 1.8 -3.8"
+          src="#door4"
+          width="2"
+          height="3.42">
+          <a-text id="door4text"
+            value="Oops! Try another door"
+            align="center" 
+            color="#FFF" 
+            visible="false" 
+            scale="0.6 0.6 0.6"
+            position="0 0.8 0.1"
+            geometry="primitive: plane; width: 3.5; height: 1.5" 
+            material="color: #111111"></a-text>
+        </a-image>
+
+        <a-image
+          event-set__down="_event: mousedown; position: 2.5 2 -3.8"
+          event-set__up="_event: mouseup; position: 2.5 1.8 -3.8"
+          event-set__leave="_event: mouseleave; position: 2.5 1.8 -3.8"
+          event-set__down2="_event: mousedown; _target: #door5text; visible: true"
+          event-set__up2="_event: mouseup; _target: #door5text; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #door5text; visible: false"
+          position="2.5 1.8 -3.8"
+          src="#door5"
+          width="2"
+          height="3.42">
+          <a-text id="door5text"
+            value="Oops! Try another door"
+            align="center" 
+            color="#FFF" 
+            visible="false" 
+            scale="0.6 0.6 0.6"
+            position="0 0.8 0.1"
+            geometry="primitive: plane; width: 3.5; height: 1.5" 
+            material="color: #111111"></a-text>
+        </a-image>
+
+        <a-image
+          event-set__down="_event: mousedown; position: 5 2 -3.8"
+          event-set__up="_event: mouseup; position: 5 1.8 -3.8"
+          event-set__leave="_event: mouseleave; position: 5 1.8 -3.8"
+          event-set__down2="_event: mousedown; _target: #door6text; visible: true"
+          event-set__up2="_event: mouseup; _target: #door6text; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #door6text; visible: false"
+          position="5 1.8 -3.8"
+          src="#door6"
+          width="2"
+          height="3.42">
+          <a-text id="door6text"
+            value="Oops! Try another door"
+            align="center" 
+            color="#FFF" 
+            visible="false" 
+            scale="0.6 0.6 0.6"
+            position="0 0.8 0.1"
+            geometry="primitive: plane; width: 3.5; height: 1.5" 
+            material="color: #111111"></a-text>
+        </a-image>
+
+        <a-image
+          event-set__down="_event: mousedown; position: 7.5 2 -3.8"
+          event-set__up="_event: mouseup; position: 7.5 1.8 -3.8"
+          event-set__leave="_event: mouseleave; position: 7.5 1.8 -3.8"
+          event-set__down2="_event: mousedown; _target: #door7text; visible: true"
+          event-set__up2="_event: mouseup; _target: #door7text; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #door7text; visible: false"
+          position="7.5 1.8 -3.8"
+          src="#door7"
+          width="2"
+          height="3.42">
+          <a-text id="door7text"
+            value="Oops! Try another door"
+            align="center" 
+            color="#FFF" 
+            visible="false" 
+            scale="0.6 0.6 0.6"
+            position="0 0.8 0.1"
+            geometry="primitive: plane; width: 3.5; height: 1.5" 
+            material="color: #111111"></a-text>
+        </a-image>
+      </a-entity>
+
+    </a-entity>
+
+    <!-- third scene -->
+    <!-- environment setup -->
+    <a-entity id="scene3" visible="false">
+      <a-box id="scene3front"
+        src="#wall"
+        position="0 0 -5"
+        scale="25 15 0.2"
+        material="side: double;">
+      </a-box>
+      <a-box id="scene3back"
+        src="#wall"
+        position="0 0 5"
+        scale="25 15 0.2"
+        material="side: double;">
+      </a-box>
+      <a-box id="scene3roof"
+        src="#wall"
+        position="0 7 0"
+        scale="35 0.2 20"
+        material="side: double;">
+      </a-box>
+    <!-- draw line on floor to lead to process -->
+    <!-- process -->
+    <!-- choose new life -->
+    <!-- new life -->
+    <!-- end scene -->
+
+    </a-entity>
+
+    <!-- camera -->
+    <a-camera wasd-controls="acceleration: 20">
+      <a-entity id="instructions"
+        text="value: CONTROLS\nMove around with WASD or Arrow Keys\nClick and drag with Mouse or Track Pad to aim" 
+        position="-0.8 -0.65 -1"
+        visible="false"
+        scale="0.7 0.7 0.7">
+      </a-entity>
+      <a-cursor
+        color="#ffc843">
+      </a-cursor>
+    </a-camera>
+    
+  </a-scene>
+
+  <!-- javascript -->
+  <script type="text/javascript">  
+    // show instructions
+    function control_intructions() {
+      document.getElementById('instructions').setAttribute('visible', 'true')
+      document.getElementById('scene1').setAttribute('visible', 'true')
+    }
+    // confirm character
+    function callconfirm() {
+      document.getElementById('confirmbox').setAttribute('visible', 'true')
+    }
+    // switch to scene 2
+    function toScene2() {
+      document.getElementById('scene1').setAttribute('visible', 'false')
+      document.getElementById('scene2').setAttribute('visible', 'true')
+      document.getElementById('instructions').setAttribute('visible', 'false')
+    }
+    // reset scene 2
+    function resetScene2() {
+      document.getElementById('goddess_welcome').setAttribute('visible', 'false')
+      document.getElementById('wallofdoors').setAttribute('visible', 'true')
+    }
+    // confirm door
+    function callconfirmbox2() {
+      document.getElementById('confirmbox2').setAttribute('visible', 'true')
+    }
+    // switch to scene 3
+    function toScene3() {
+      document.getElementById('scene2').setAttribute('visible', 'false')
+      document.getElementById('scene3').setAttribute('visible', 'true')
+    }
+  </script>
+
+</body>
+</html>
