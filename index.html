@@ -19,6 +19,8 @@
   <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
 <!-- allow micro interations (animation) -->
   <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
+<!-- layout -->
+  <script src="https://unpkg.com/aframe-layout-component@4.3.1/dist/aframe-layout-component.min.js"></script> 
 </head>
 
 <body>
@@ -43,7 +45,32 @@
       <img id="door5" src="assets/doors/a_door5.png">
       <img id="door6" src="assets/doors/a_door6.png">
       <img id="door7" src="assets/doors/a_door7.png">
-
+      <!-- scene 3 -->
+      <img id="scene3wall" src="assets/wall.jpg">
+      <img id="john3" src="assets/a_john.png">
+      <img id="arrow" src="assets/arrow.png">
+      <img id="wallarrow" src="assets/wallarrow.png">
+      <video id="recyclevid" src="recycle_plastic.mp4"></video>
+      <img id="process1btn" src="assets/facility_process/a_shred_btn.png">
+      <img id="process2btn" src="assets/facility_process/a_clean_btn.png">
+      <img id="process3btn" src="assets/facility_process/a_melt_btn.png">
+      <img id="process4btn" src="assets/facility_process/a_form_btn.png">
+      <img id="process5btn" src="assets/facility_process/a_cut_btn.png">
+      <img id="process1" src="assets/facility_process/a_shred.png">
+      <img id="process2" src="assets/facility_process/a_clean.png">
+      <img id="process3" src="assets/facility_process/a_melt.png">
+      <img id="process4" src="assets/facility_process/a_form.png">
+      <img id="process5" src="assets/facility_process/a_cut.png">
+      <img id="preparejohn" src="assets/facility_process/transform/a_preparejohn.png">
+      <img id="shredjohn" src="assets/facility_process/transform/a_shredjohn.png">
+      <img id="cleanjohn" src="assets/facility_process/transform/a_cleanjohn.png">
+      <img id="meltjohn" src="assets/facility_process/transform/a_meltjohn.png">
+      <img id="formjohn" src="assets/facility_process/transform/a_formjohn.png">
+      <img id="cutjohn" src="assets/facility_process/transform/a_cutjohn.png">
+      <img id="johnready" src="assets/facility_process/transform/a_ready.png">
+      <!-- scene 4 -->
+      <img id="scene4floor" src="assets/wall2.jpg">
+      <!-- <a-asset-item id="pelletmodel" src="assets/honda/scene.gltf"></a-asset-item>  -->
     </a-assets>
     <a-entity environment="preset: forest; dressingAmount: 250"></a-entity>
 
@@ -66,10 +93,15 @@
       </a-image>
     </a-plane>
 
-    <!-- first scene -->
+    <!-- first scene - choose character -->
     <a-entity id="scene1"
       visible="false">
       <!-- character selection -->
+      <!-- <a-box
+        position="0 1.5 -1.5"
+        onclick="toScene4()"></a-box> -->
+
+
       <a-text
         position="0 2.7 -3"
         value="Let's choose a character first"
@@ -254,7 +286,7 @@
       </a-box>
     </a-entity>
     
-    <!-- second scene -->
+    <!-- second scene - sort by type -->
     <!-- environment setup -->
     <a-entity id="scene2" visible="false">
       <a-box id="scene2front"
@@ -504,34 +536,213 @@
 
     </a-entity>
 
-    <!-- third scene -->
+    <!-- third scene - facility process -->
     <!-- environment setup -->
     <a-entity id="scene3" visible="false">
-      <a-box id="scene3front"
-        src="#wall"
-        position="0 0 -5"
-        scale="25 15 0.2"
-        material="side: double;">
-      </a-box>
-      <a-box id="scene3back"
-        src="#wall"
-        position="0 0 5"
-        scale="25 15 0.2"
-        material="side: double;">
-      </a-box>
-      <a-box id="scene3roof"
-        src="#wall"
-        position="0 7 0"
-        scale="35 0.2 20"
-        material="side: double;">
-      </a-box>
-    <!-- draw line on floor to lead to process -->
-    <!-- process -->
-    <!-- choose new life -->
-    <!-- new life -->
-    <!-- end scene -->
-
+      <a-entity id="scene3setup">
+        <a-box id="scene3front"
+          src="#scene3wall"
+          position="0 0 -5"
+          scale="25 15 0.2"
+          material="side: double;"></a-box>
+        <a-box id="scene3back"
+          src="#scene3wall"
+          position="0 0 5"
+          scale="25 15 0.2"
+          material="side: double;"></a-box>
+        <a-box id="scene3roof"
+          src="#scene3wall"
+          position="0 7 0"
+          scale="35 0.2 20"
+          material="side: double;"></a-box>
+        <a-box id="scene3floor"
+          src="#scene3wall"
+          position="0 0 0.6"
+          scale="35 30 0.5"
+          rotation="90 0 0"
+          material="side: double"
+          repeat="4 4"></a-box>
+        <a-image id="arrow"
+          src="#arrow"
+          position="-13 0.4 -3"
+          scale="6 4 4"
+          rotation="-90 0 0"
+          material="side: double"></a-image>
+        <a-image id="wallarrow"
+          src="#wallarrow"
+          position="-9 1.2 -4.8"
+          scale="3.3 1 3"></a-image>
+        <a-video src="#recyclevid" 
+          autoplay loop="true"
+          width="5.31" 
+          height="3" 
+          position="-14 2 -12">
+          <a-text
+            value="informative video"
+            position="0 2 -0.2"></a-text></a-video>
+      </a-entity>
+      <a-text id="helpjohn"
+        value="Get ready for your next life!\nClick in the correct order\nto prepare yourself into plastic pellets"
+        position="-8.2 4 -9.5"
+        rotation = "0 -60 0"
+        align="center"
+        color="#000000"
+      ></a-text>
+      <a-entity id="facilityprocess1"
+        layout="type: box; columns: 3; marginColumn: 2.2; marginRow: 1.2"
+        position = "-10 1.5 -11"
+        rotation = "0 -60 0"
+        >
+        <a-image id="iscut"
+          event-set__hover="_event: mouseenter; scale: 2.2 1.2 0"
+          event-set__down="_event: mousedown; scale: 2.2 1.2 0"
+          event-set__up="_event: mouseup; scale: 2 1 0"
+          event-set__leave="_event: mouseleave; scale: 2 1 0"
+          event-set__down2="_event: mousedown; _target: #process5txt; visible: true"
+          event-set__up2="_event: mouseup; _target: #process5txt; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #process5txt; visible: false"
+          scale = "2 1 0"
+          onclick=""
+          src="#process5btn">
+          <a-text id="process5txt" 
+            value="Think again, try another step" 
+            align="center" 
+            color="#000000" 
+            visible="false" 
+            scale="0.3 0.6 0.3"
+            position="0 -0.6 1"></a-text></a-image>
+        <a-image id="ismelt"
+          event-set__hover="_event: mouseenter; scale: 2.2 1.2 0"
+          event-set__down="_event: mousedown; scale: 2.2 1.2 0"
+          event-set__up="_event: mouseup; scale: 2 1 0"
+          event-set__leave="_event: mouseleave; scale: 2 1 0"
+          event-set__down2="_event: mousedown; _target: #process3txt; visible: true"
+          event-set__up2="_event: mouseup; _target: #process3txt; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #process3txt; visible: false"
+          scale = "2 1 0"
+          onclick=""
+          src="#process3btn">
+          <a-text id="process3txt" 
+            value="Think again, try another step" 
+            align="center" 
+            color="#000000" 
+            visible="false" 
+            scale="0.3 0.6 0.3"
+            position="0 -0.6 1"></a-text></a-image>
+        <a-image id="isclean" 
+          event-set__hover="_event: mouseenter; scale: 2.2 1.2 0"
+          event-set__down="_event: mousedown; scale: 2.2 1.2 0"
+          event-set__up="_event: mouseup; scale: 2 1 0"
+          event-set__leave="_event: mouseleave; scale: 2 1 0"
+          event-set__down2="_event: mousedown; _target: #process2txt; visible: true"
+          event-set__up2="_event: mouseup; _target: #process2txt; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #process2txt; visible: false"
+          scale = "2 1 0"
+          onclick=""
+          src="#process2btn">
+          <a-text id="process2txt" 
+            value="Think again, try another step" 
+            align="center" 
+            color="#000000" 
+            visible="false" 
+            scale="0.3 0.6 0.3"
+            position="0 -0.6 1"></a-text></a-image>
+        <a-image id="isjohn"
+          scale = "2 1 0"
+          src="#preparejohn"></a-image>
+        <a-image id="isform"
+          event-set__hover="_event: mouseenter; scale: 2.2 1.2 0"
+          event-set__down="_event: mousedown; scale: 2.2 1.2 0"
+          event-set__up="_event: mouseup; scale: 2 1 0"
+          event-set__leave="_event: mouseleave; scale: 2 1 0"
+          event-set__down2="_event: mousedown; _target: #process4txt; visible: true"
+          event-set__up2="_event: mouseup; _target: #process4txt; visible: false"
+          event-set__leave2="_event: mouseleave; _target: #process4txt; visible: false"
+          scale = "2 1 0"
+          onclick=""
+          src="#process4btn">
+          <a-text id="process4txt" 
+            value="Think again, try another step" 
+            align="center" 
+            color="#000000" 
+            visible="false" 
+            scale="0.3 0.6 0.3"
+            position="0 0.6 1"></a-text></a-image>
+        <a-image id="isshred"
+          event-set__hover="_event: mouseenter; scale: 2.2 1.2 0"
+          event-set__down="_event: mousedown; scale: 2.2 1.2 0; src: #process1"
+          event-set__up="_event: mouseup; scale: 2 1 0"
+          event-set__leave="_event: mouseleave; scale: 2 1 0"
+          onclick="process1()"
+          scale = "2 1 0"
+          src="#process1btn"></a-image>
+      </a-entity>
+      <!-- <a-image id="isready"
+        event-set__hover="_event: mouseenter; scale: 4.2 2.2 0"
+        event-set__down="_event: mousedown; scale: 4.2 2.2 0"
+        event-set__up="_event: mouseup; scale: 4 2 0"
+        event-set__leave="_event: mouseleave; scale: 4 2 0"
+        event-set__down2="_event: mousedown; _target: #process5txt; visible: true"
+        event-set__up2="_event: mouseup; _target: #process5txt; visible: false"
+        event-set__leave2="_event: mouseleave; _target: #process5txt; visible: false"
+        visible="false"
+        scale = "4 2 0"
+        position="-10 1 -7"
+        rotation="0 -180 0"
+        onclick="toScene4()"
+        src="#johnready"></a-image> -->
+      <a-image id="isready"
+        event-set__hover="_event: mouseenter; scale: 4.2 2.2 0"
+        event-set__down="_event: mousedown; scale: 4.2 2.2 0"
+        event-set__up="_event: mouseup; scale: 4 2 0"
+        event-set__leave="_event: mouseleave; scale: 4 2 0"
+        visible="false"
+        rotation="0 -180 0"
+        scale = "3 1.5 0"
+        position="-10 2 -5.5"
+        onclick="toScene4()"
+        src="#johnready"></a-image>
     </a-entity>
+
+    <!-- fourth scene - choose new life -->
+    <a-entity id="scene4" visible="false">
+      <a-box id="scene4floor"
+        src="#scene4floor"
+        position="0 0 0.3"
+        scale="10 10 0.3"
+        rotation="90 0 0"
+        material="side: double"
+        repeat="4 4"></a-box>
+      <a-cylinder
+        color="gold"
+        position="0 0.2 0"
+        height="0.5" 
+        radius="1.5"></a-cylinder>
+      <a-text id="choose_life"
+        value="Click on the pellets and\nchoose your next life"
+        align="center"
+        color="#000000"
+        position="0 2.5 0"
+        rotation="0 180 0"></a-text>
+      <a-entity id="pelletballs"
+        position="0 0.8 0"
+        onclick="">
+        <a-sphere
+          position="0 0 0"
+          radius="0.1"
+          color="blue"></a-sphere>
+        <a-sphere
+          position="1 0 0"
+          radius="0.1"
+          color="blue"></a-sphere>
+        <!-- <a-entity gltf-model="#pelletmodel"></a-entity> -->
+        <a-entity gltf-model="#pelletmodel" scale="0.1 0.1 0.1" position="0 2 -3"></a-entity>
+      </a-entity>
+    </a-entity>
+
+  <!-- fifth scene - ending scene with more information -->
+
+  <!-- remember to delete the shortcut box -->
 
     <!-- camera -->
     <a-camera wasd-controls="acceleration: 20">
@@ -576,10 +787,77 @@
     }
     // switch to scene 3
     function toScene3() {
+      document.getElementById('scene1').setAttribute('visible', 'false')
       document.getElementById('scene2').setAttribute('visible', 'false')
       document.getElementById('scene3').setAttribute('visible', 'true')
     }
-  </script>
+    // when click on shred john
+    function process1() {
+      document.getElementById('isjohn').setAttribute('src', '#shredjohn')
+      document.getElementById('isshred').setAttribute('onclick', '')
+      document.getElementById('process2txt').setAttribute('value', '')
+      document.getElementById('isclean').setAttribute('onclick', 'process2()')
+    }
+    // when click on clean john
+    function process2() {
+      //change the top left image
+      document.getElementById('isjohn').setAttribute('src', '#cleanjohn')
+      //set "you got it correct" image for clicked item
+      document.getElementById('isclean').setAttribute('src', '#process2')
+      //take out text so it wouldn't say you're wrong when you click on the right thing for next one
+      document.getElementById('process3txt').setAttribute('value', '')
+      //prep for next scene
+      document.getElementById('ismelt').setAttribute('onclick', 'process3()')
+      //take out function so doesn't change the john pic
+      document.getElementById('isclean').setAttribute('onclick', '')
+    }
+    // when click on melt john
+    function process3() {
+      //change the top left image
+      document.getElementById('isjohn').setAttribute('src', '#meltjohn')
+      //set "you got it correct" image for clicked item
+      document.getElementById('ismelt').setAttribute('src', '#process3')
+      //take out text so it wouldn't say you're wrong when you click on the right thing for next one
+      document.getElementById('process4txt').setAttribute('value', '')
+      //prep for next scene
+      document.getElementById('isform').setAttribute('onclick', 'process4()')
+      //take out function so doesn't change the john pic
+      document.getElementById('ismelt').setAttribute('onclick', '')
+    }
+    // when click on form john
+    function process4() {
+      //change the top left image
+      document.getElementById('isjohn').setAttribute('src', '#formjohn')
+      //set "you got it correct" image for clicked item
+      document.getElementById('isform').setAttribute('src', '#process4')
+      //take out text so it wouldn't say you're wrong when you click on the right thing for next one
+      document.getElementById('process5txt').setAttribute('value', '')
+      //prep for next scene
+      document.getElementById('iscut').setAttribute('onclick', 'process5()')
+      //take out function so doesn't change the john pic
+      document.getElementById('isform').setAttribute('onclick', '')
+    }
+    // when click on cut john
+    function process5() {
+      //change the top left image
+      document.getElementById('isjohn').setAttribute('src', '#cutjohn')
+      //set "you got it correct" image for clicked item
+      document.getElementById('iscut').setAttribute('src', '#process5')
+      //prep for next scene
+      document.getElementById('isready').setAttribute('visible', 'true')
+      //take out function so doesn't change the john pic
+      document.getElementById('iscut').setAttribute('onclick', '')
+      //change text on top
+      document.getElementById('helpjohn').setAttribute('value', 'You are ready!\nLook to your right and click\nthe green "Ready!" button to proceed')
+    }
+    // to scene 4
+    function toScene4() {
+      document.getElementById('scene1').setAttribute('visible', 'false')
+      document.getElementById('scene3').setAttribute('visible', 'false')
+      document.getElementById('scene4').setAttribute('visible', 'true')
+    }
+
+</script>
 
 </body>
 </html>
