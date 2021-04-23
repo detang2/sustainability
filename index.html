@@ -46,7 +46,7 @@
       <img id="door6" src="assets/doors/a_door6.png">
       <img id="door7" src="assets/doors/a_door7.png">
       <!-- scene 3 -->
-      <img id="scene3wall" src="assets/wall.jpg">
+      <img id="surface" src="assets/wall.jpg">
       <img id="john3" src="assets/a_john.png">
       <img id="arrow" src="assets/arrow.png">
       <img id="wallarrow" src="assets/wallarrow.png">
@@ -69,7 +69,6 @@
       <img id="cutjohn" src="assets/facility_process/transform/a_cutjohn.png">
       <img id="johnready" src="assets/facility_process/transform/a_ready.png">
       <!-- scene 4 -->
-      <img id="scene4floor" src="assets/wall2.jpg">
       <a-asset-item id="pelletmodel" src="assets/pellets/model.gltf"></a-asset-item> 
       <img id="gold" src="assets/gold2.png">
       <img id="wood" src="assets/wood.jpg">
@@ -331,7 +330,6 @@ onclick="toScene4()"></a-box> -->
           align="center">
         </a-text>
         <a-plane id="johnresponse"
-          event-set__click="_event: click; _target: #johnresponse_image; src: #letsgo"
           rotation="-10 0 0"
           position="0 0.7 -3"
           width="2.18"
@@ -547,22 +545,22 @@ onclick="toScene4()"></a-box> -->
       visible="false">
       <a-entity id="scene3setup">
         <a-box id="scene3front"
-          src="#scene3wall"
+          src="#surface"
           position="0 0 -5"
           scale="25 15 0.2"
           material="side: double;"></a-box>
         <a-box id="scene3back"
-          src="#scene3wall"
+          src="#surface"
           position="0 0 5"
           scale="25 15 0.2"
           material="side: double;"></a-box>
         <a-box id="scene3roof"
-          src="#scene3wall"
+          src="#surface"
           position="0 7 0"
           scale="35 0.2 20"
           material="side: double;"></a-box>
         <a-box id="scene3floor"
-          src="#scene3wall"
+          src="#surface"
           position="0 0 0.6"
           scale="35 30 0.5"
           rotation="90 0 0"
@@ -716,7 +714,7 @@ onclick="toScene4()"></a-box> -->
       position="-3 0.1 3">
       <a-entity id="scene4environment">
       <a-box id="scene4floor"
-        src="#scene4floor"
+        src="#surface"
         scale="10 10 0.1"
         rotation="90 0 0"
         material="side: double"
