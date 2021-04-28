@@ -82,11 +82,11 @@
       <img id="wood" src="assets/wood.jpg">
       <img id="marble" src="assets/marble2.png">
       <!-- Tshirt model made by 123muse - from Sketchfab -->
-<!--       <a-asset-item id="tshirt" src="assets/choices/tshirt/scene.gltf"></a-asset-item>  -->
+      <a-asset-item id="tshirt" src="assets/choices/tshirt/scene.gltf"></a-asset-item> 
       <!-- Red Backpack made by AwesomeAmbz - from Sketchfab -->
-<!--       <a-asset-item id="backpack" src="assets/choices/backpack/scene.gltf"></a-asset-item>  -->
+      <a-asset-item id="backpack" src="assets/choices/backpack/scene.gltf"></a-asset-item> 
       <!-- Pillow, cushion made by SusanKing - from Sketchfab -->
-<!--       <a-asset-item id="pillow" src="assets/choices/pillow/scene.gltf"></a-asset-item>  -->
+      <a-asset-item id="pillow" src="assets/choices/pillow/scene.gltf"></a-asset-item> 
 
       <!-- scene 5 -->
       <img id="info1" src="assets/info/a_info1.png">
@@ -96,7 +96,7 @@
       <img id="info5" src="assets/info/a_info5.png">
       <img id="startnewexp" src="assets/info/a_startnewexp.png">
       <!-- Designer confetti made by Andrew McHugh - from Google Poly -->
-<!--       <a-asset-item id="confetti" src="assets/confetti/model.gltf"></a-asset-item>  -->
+      <a-asset-item id="confetti" src="assets/confetti/model.gltf"></a-asset-item> 
 
     </a-assets>
     <a-entity environment="preset: forest; dressingAmount: 250"></a-entity>
@@ -784,10 +784,10 @@ onclick="toScene5()"></a-box> -->
             position="0 0.45 0"
             height="0.05" 
             radius="0.3"></a-cylinder>
-<!--           <a-entity gltf-model="#tshirt" id="atshirt"
+          <a-entity gltf-model="#tshirt" id="atshirt"
             scale="0.3 0.3 0.3" 
             rotation="0 180 0"
-            position="0 -0.1 0"></a-entity> -->
+            position="0 -0.1 0"></a-entity>
           <a-text id="choice1txt"
             visible="false"
             rotation="0 180 0"
@@ -811,10 +811,10 @@ onclick="toScene5()"></a-box> -->
             position="0 0.45 0"
             height="0.05" 
             radius="0.3"></a-cylinder>
-<!--           <a-entity gltf-model="#backpack" id="abackpack"
+          <a-entity gltf-model="#backpack" id="abackpack"
             scale="0.002 0.002 0.002" 
             rotation="0 -90 -10"
-            position="0.5 0.6 -0.04"></a-entity> -->
+            position="0.5 0.6 -0.04"></a-entity>
           <a-box id="confirmbackpack"
             scale="1 0.4 0.1"
             color="#4cbb6d"
@@ -845,10 +845,10 @@ onclick="toScene5()"></a-box> -->
             position="0 0.45 0"
             height="0.05" 
             radius="0.3"></a-cylinder>
-<!--           <a-entity gltf-model="#pillow" id="apillow"
+          <a-entity gltf-model="#pillow" id="apillow"
             scale="0.003 0.003 0.003" 
             rotation="-45 0 0"
-            position="0 0.8 0"></a-entity> -->
+            position="0 0.8 0"></a-entity>
           <a-text id="choice3txt"
             visible="false"
             rotation="0 180 0"
@@ -880,9 +880,9 @@ onclick="toScene5()"></a-box> -->
             height="0.8" 
             radius="0.3"
             >
-<!--             <a-entity gltf-model="#confetti"
+            <a-entity gltf-model="#confetti"
               scale="0.5 0.5 0.5" 
-              position="0 0.04 0.2"></a-entity> -->
+              position="0 0.04 0.2"></a-entity>
             <a-cylinder
               src="#marble"
               position="0 0.45 0"
@@ -1045,6 +1045,10 @@ onclick="toScene5()"></a-box> -->
     // show next life choices
     function showchoices() {
       document.getElementById('choices_layout').setAttribute('visible', 'true')
+    }
+    // confirm backpack choice
+    function chosebackpack() {
+      document.getElementById('*******').setAttribute('visible', 'true')
     }
     // to scene 5
     function toScene5() {
