@@ -29,16 +29,19 @@
     <a-assets>
       <img id="welcome" src="assets/a_welcome.png">
       <!-- scene 1 -->
+      <!-- I made edits to these icons, but they were made by Freepik from flaticon.com -->
       <img id="plastic" src="assets/chara/a_plastic.png">
       <img id="paper" src="assets/chara/a_paper.png">
       <img id="compost" src="assets/chara/a_compost.png">
       <img id="metal" src="assets/chara/a_metal.png">
       <img id="glass" src="assets/chara/a_glass.png">
+
       <!-- scene 2 -->
       <img id="wall" src="assets/wall2.jpeg">
       <img id="goddess" src="assets/goddess.png">
       <img id="sayletsgo" src="assets/a_sayletsgo.png">
       <img id="john" src="assets/a_john_flipped.png">
+      <!-- information based on https://www-tc.pbs.org/strangedays/pdf/StrangeDaysSmartPlasticsGuide.pdf -->
       <img id="door1" src="assets/doors/a_door1.png">
       <img id="door2" src="assets/doors/a_door2.png">
       <img id="door3" src="assets/doors/a_door3.png">
@@ -46,12 +49,14 @@
       <img id="door5" src="assets/doors/a_door5.png">
       <img id="door6" src="assets/doors/a_door6.png">
       <img id="door7" src="assets/doors/a_door7.png">
+
       <!-- scene 3 -->
       <img id="surface" src="assets/wall.jpg">
       <img id="john3" src="assets/a_john.png">
       <img id="arrow" src="assets/arrow.png">
       <img id="wallarrow" src="assets/wallarrow.png">
       <video id="recyclevid" src="recycle_plastic.mp4"></video>
+      <!-- remade these graphics, but original information was based on How Are Plastics Recycled https://www.youtube.com/watch?v=apOgE88Q8fs -->
       <img id="process1btn" src="assets/facility_process/a_shred_btn.png">
       <img id="process2btn" src="assets/facility_process/a_clean_btn.png">
       <img id="process3btn" src="assets/facility_process/a_melt_btn.png">
@@ -69,21 +74,38 @@
       <img id="formjohn" src="assets/facility_process/transform/a_formjohn.png">
       <img id="cutjohn" src="assets/facility_process/transform/a_cutjohn.png">
       <img id="johnready" src="assets/facility_process/transform/a_ready.png">
+
       <!-- scene 4 -->
+      <!-- Jelly Beans made by Daniel Melchior - from Google Poly -->
       <a-asset-item id="pelletmodel" src="assets/pellets/model.gltf"></a-asset-item> 
       <img id="gold" src="assets/gold2.png">
       <img id="wood" src="assets/wood.jpg">
       <img id="marble" src="assets/marble2.png">
+      <!-- Tshirt model made by 123muse - from Sketchfab -->
+      <a-asset-item id="tshirt" src="assets/choices/tshirt/scene.gltf"></a-asset-item> 
+      <!-- Red Backpack made by AwesomeAmbz - from Sketchfab -->
+      <a-asset-item id="backpack" src="assets/choices/backpack/scene.gltf"></a-asset-item> 
+      <!-- Pillow, cushion made by SusanKing - from Sketchfab -->
+      <a-asset-item id="pillow" src="assets/choices/pillow/scene.gltf"></a-asset-item> 
+
       <!-- scene 5 -->
+      <img id="info1" src="assets/info/a_info1.png">
+      <img id="info2" src="assets/info/a_info2.png">
+      <img id="info3" src="assets/info/a_info3.png">
+      <img id="info4" src="assets/info/a_info4.png">
+      <img id="info5" src="assets/info/a_info5.png">
+      <img id="startnewexp" src="assets/info/a_startnewexp.png">
+      <!-- Designer confetti made by Andrew McHugh - from Google Poly -->
+      <a-asset-item id="confetti" src="assets/confetti/model.gltf"></a-asset-item> 
 
     </a-assets>
     <a-entity environment="preset: forest; dressingAmount: 250"></a-entity>
 
-<!-- DELETE -->
+<!-- SHORTCUT BOX -->
 <!-- <a-box
 position="0 1.5 -1.5"
-onclick="toScene4()"></a-box> -->
-<!-- DELETE -->
+onclick="toScene5()"></a-box> -->
+<!-- SHORTCUT BOX -->
 
     <!-- welcome scene -->
     <a-plane id="welcome_div"
@@ -682,20 +704,6 @@ onclick="toScene4()"></a-box> -->
           scale = "2 1 0"
           src="#process1btn"></a-image>
       </a-entity>
-      <!-- <a-image id="isready"
-        event-set__hover="_event: mouseenter; scale: 4.2 2.2 0"
-        event-set__down="_event: mousedown; scale: 4.2 2.2 0"
-        event-set__up="_event: mouseup; scale: 4 2 0"
-        event-set__leave="_event: mouseleave; scale: 4 2 0"
-        event-set__down2="_event: mousedown; _target: #process5txt; visible: true"
-        event-set__up2="_event: mouseup; _target: #process5txt; visible: false"
-        event-set__leave2="_event: mouseleave; _target: #process5txt; visible: false"
-        visible="false"
-        scale = "4 2 0"
-        position="-10 1 -7"
-        rotation="0 -180 0"
-        onclick="toScene4()"
-        src="#johnready"></a-image> -->
       <a-image id="isready"
         event-set__hover="_event: mouseenter; scale: 4.2 2.2 0"
         event-set__down="_event: mousedown; scale: 4.2 2.2 0"
@@ -742,32 +750,184 @@ onclick="toScene4()"></a-box> -->
         height="0.05" 
         radius="1.5"></a-cylinder>
       </a-entity>
-      <a-text id="choose_life"
-        value="Click on the pellets and\nchoose your next life"
-        align="center"
-        color="#000000"
-        position="0 2.1 0"
-        rotation="0 180 0"></a-text>
-
-      <a-entity id="pelletballs"
-        onclick="showchoices()"
-        position="0 0.4 0"
-        animation="property: position; to: 0 0.5 0; loop: true; dur: 2000; dir:alternate; easing:easeInQuad">
-        <a-entity gltf-model="#pelletmodel" 
-          lighting="none"
-          scale="1.7 1.7 1.7" 
-          position="0.39 -3.2 0.67"></a-entity></a-entity>
-      <a-image id="choices"
-        src="#wall"
-        position="0 2 -0.2"
-        scale="2 1 0.1"
-        visible="false"></a-image>
+      <a-entity id="direction_and_action">
+        <a-text id="choose_life"
+          value="Click on the pellets and\nchoose your next life"
+          align="center"
+          color="#000000"
+          position="0 2.1 0"
+          rotation="0 180 0"></a-text>
+        <a-entity id="pelletballs"
+          onclick="showchoices()"
+          position="0 0.4 0"
+          animation="property: position; to: 0 0.5 0; loop: true; dur: 2000; dir:alternate; easing:easeInQuad">
+          <a-entity gltf-model="#pelletmodel" 
+            scale="1.7 1.7 1.7" 
+            position="0.39 -3.2 0.67"></a-entity></a-entity>
+      </a-entity>
+      <a-entity id="choices_layout"
+        visible="false"
+        position = "0 0.5 3"
+        >
+        <a-cylinder id="choice1"
+          event-set__click="_event: mousedown; _target: #choice1txt; visible: true"
+          event-set__leave="_event: mouseleave; _target: #choice1txt; visible: false"
+          event-set__backpackup="_event: mouseenter; _target: #atshirt; position: 0 -0.05 0"
+          event-set__backpackdown="_event: mouseleave; _target: #atshirt; position: 0 -0.1 0"
+          src="#wood"
+          position="1 0 1"
+          height="0.8" 
+          radius="0.3"
+          animation="property: position; from: 1 -3 1; to: 1 0 1; loop: false; dur: 4000; dir:linear; easing:easeInQuad; delay: 2000;">
+          <a-cylinder id="choice1top"
+            src="#marble"
+            position="0 0.45 0"
+            height="0.05" 
+            radius="0.3"></a-cylinder>
+          <a-entity gltf-model="#tshirt" id="atshirt"
+            scale="0.3 0.3 0.3" 
+            rotation="0 180 0"
+            position="0 -0.1 0"></a-entity>
+          <a-text id="choice1txt"
+            visible="false"
+            rotation="0 180 0"
+            scale="0.4 0.4 0"
+            value="Not available yet" 
+            align="center" 
+            color="#000000" 
+            position="0 1.4 0">
+          </a-text></a-cylinder>
+        <a-cylinder id="choice2"
+          event-set__click="_event: mousedown; _target: #confirmbackpack; visible: true"
+          event-set__backpackup="_event: mouseenter; _target: #abackpack; position: 0.5 0.65 -0.04"
+          event-set__backpackdown="_event: mouseleave; _target: #abackpack; position: 0.5 0.6 -0.04"
+          src="#wood"
+          position="0 0 1"
+          height="0.8" 
+          radius="0.3"
+          animation="property: position; from: 0 -3 1; to: 0 0 1; loop: false; dur: 4000; dir:linear; easing:easeInQuad; delay: 2000;">
+          <a-cylinder id="choice2top"
+            src="#marble"
+            position="0 0.45 0"
+            height="0.05" 
+            radius="0.3"></a-cylinder>
+          <a-entity gltf-model="#backpack" id="abackpack"
+            scale="0.002 0.002 0.002" 
+            rotation="0 -90 -10"
+            position="0.5 0.6 -0.04"></a-entity>
+          <a-box id="confirmbackpack"
+            scale="1 0.4 0.1"
+            color="#4cbb6d"
+            visible="false"
+            rotation="0 180 0"
+            position="0 1.5 0"
+            onclick="toScene5()">
+            <a-text
+              value="Confirm" 
+              align="center" 
+              color="#FFF" 
+              scale="1 2.5 0"
+              position="0 0 0.9">
+            </a-text>
+          </a-box></a-cylinder>
+        <a-cylinder id="choice3"
+          event-set__click="_event: mousedown; _target: #choice3txt; visible: true"
+          event-set__leave="_event: mouseleave; _target: #choice3txt; visible: false"
+          event-set__pillowup="_event: mouseenter; _target: #apillow; position: 0 0.85 0"
+          event-set__pillowdown="_event: mouseleave; _target: #apillow; position: 0 0.8 0"
+          src="#wood"
+          position="-1 0 1"
+          height="0.8" 
+          radius="0.3"
+          animation="property: position; from: -1 -3 1; to: -1 0 1; loop: false; dur: 4000; dir:linear; easing:easeInQuad; delay: 2000;">
+          <a-cylinder id="choice3top"
+            src="#marble"
+            position="0 0.45 0"
+            height="0.05" 
+            radius="0.3"></a-cylinder>
+          <a-entity gltf-model="#pillow" id="apillow"
+            scale="0.003 0.003 0.003" 
+            rotation="-45 0 0"
+            position="0 0.8 0"></a-entity>
+          <a-text id="choice3txt"
+            visible="false"
+            rotation="0 180 0"
+            scale="0.4 0.4 0"
+            value="Not available yet" 
+            align="center" 
+            color="#000000" 
+            position="0 1.4 0">
+          </a-text></a-cylinder>
+      </a-entity>
     </a-entity>
 
     <!-- fifth scene - ending scene with more information -->
-    <a-entity id="scene5">
-      
+    <a-entity id="scene5"
+      visible="false"
+      position="-3 0 6">
+      <a-box id="scene45loor"
+        src="#surface"
+        scale="1.5 1.5 0.05"
+        rotation="90 0 0"
+        material="side: double"
+        position="0 0.1 1">
+      </a-box>
+      <a-entity id="scene5stuff"
+        position = "0 0.5 0">
+        <a-cylinder
+            src="#wood"
+            position="0 0 1"
+            height="0.8" 
+            radius="0.3"
+            >
+            <a-entity gltf-model="#confetti"
+              scale="0.5 0.5 0.5" 
+              position="0 0.04 0.2"></a-entity>
+            <a-cylinder
+              src="#marble"
+              position="0 0.45 0"
+              height="0.05" 
+              radius="0.3"></a-cylinder>
+            <a-entity gltf-model="#backpack"
+              scale="0.002 0.002 0.002" 
+              rotation="0 -90 -10"
+              position="0.5 0.6 -0.04"></a-entity></a-cylinder>
+      </a-entity>
+      <a-image
+        event-set__hover="_event: mouseenter; scale: 4.08 2.5 1"
+        event-set__leave="_event: mouseleave; scale: 3.26 2 1"
+        src="#startnewexp"
+        rotation="20 180 0"
+        scale="3.26 2 1"
+        position="0 4.3 3.7"
+        onclick="toScene1()"></a-image>
+      <a-image
+        src="#info1"
+        rotation="0 180 0"
+        scale="3.26 2 1"
+        position="0 1.6 3.7"></a-image>
+        <a-image
+        src="#info2"
+        rotation="0 120 0"
+        scale="3.26 2 1"
+        position="-2.8 1.6 2.09"></a-image>
+        <a-image
+        src="#info3"
+        rotation="0 -120 0"
+        scale="3.26 2 1"
+        position="2.8 1.6 2.09"></a-image>
+        <a-image
+        src="#info4"
+        rotation="0 -90 0"
+        scale="3.26 2 1"
+        position="3.7 1.6 -1.2"></a-image>
+        <a-image
+        src="#info5"
+        rotation="0 90 0"
+        scale="3.26 2 1"
+        position="-3.7 1.6 -1.2"></a-image>
     </a-entity>
+
     <!-- camera -->
     <a-camera 
       wasd-controls="acceleration: 20">
@@ -800,6 +960,7 @@ onclick="toScene4()"></a-box> -->
       document.getElementById('scene1').setAttribute('visible', 'false')
       document.getElementById('scene2').setAttribute('visible', 'true')
       document.getElementById('instructions').setAttribute('visible', 'false')
+      document.getElementById('confirmbox').setAttribute('visible', 'false')
     }
     // reset scene 2
     function resetScene2() {
@@ -883,7 +1044,21 @@ onclick="toScene4()"></a-box> -->
     }
     // show next life choices
     function showchoices() {
-      document.getElementById('choices').setAttribute('visible', 'true')
+      document.getElementById('choices_layout').setAttribute('visible', 'true')
+    }
+    // confirm backpack choice
+    function chosebackpack() {
+      document.getElementById('*******').setAttribute('visible', 'true')
+    }
+    // to scene 5
+    function toScene5() {
+      document.getElementById('scene4').setAttribute('visible', 'false')
+      document.getElementById('scene5').setAttribute('visible', 'true')
+    }
+    // to scene 5
+    function toScene1() {
+      document.getElementById('scene5').setAttribute('visible', 'false')
+      document.getElementById('scene1').setAttribute('visible', 'true')
     }
 
 </script>
